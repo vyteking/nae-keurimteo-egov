@@ -28,7 +28,7 @@
 	
 	<insert id="insertUser" parameterType="userMap"><![CDATA[
 		INSERT INTO userPrimaryInfo (useridxfirst, userid, useridxsecond, userpw, useridxsecure, userstatus, userrole, userjoindate, userfollowing, userfollowers)
-		VALUES #{userIdxFirst}, #{userID}, #{userIdxSecond}, #{userPW}, #{userIdxSecure}, #{userstatus}, #{userrole}, #{userJoindate}, #{userFollowing}, #{userFollowers}
+		VALUES #{userIdxFirst}, #{userID}, #{userIdxSecond}, #{userPW}, #{userIdxSecure}, #{userstatus}, #{userrole}, #{userJoindate}, #{userfollowing}, #{userfollowers}}
 	]]></insert>
 	
 	<update id="updateUser" parameterType="userMap"><![CDATA[
