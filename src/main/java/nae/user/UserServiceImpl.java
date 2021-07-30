@@ -50,6 +50,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void insertUser(UserVO user) {
 		// TODO Auto-generated method stub
+		//user.setUserIdxFirst(generateUserIdx);
+		user.setUserrole((byte) 10);
+		user.setUserstatus((byte) 10);
+		user.setUserFollowing(0);
+		user.setUserFollowers(0);
 		userDAO.insertUser(user);
 	}
 
