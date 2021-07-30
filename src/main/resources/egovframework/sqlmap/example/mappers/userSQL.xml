@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+	<resultMap type="userMap" id="UserVO">
+		<id property="userIdxFirst"	column="useridxfirst"/>
+		<result property="userID"	column="userid"/>
+		<result property="userIdxSecond"	column="useridxsecond"/>
+		<result property="userPW"	column="userpw"/>
+		<result property="userIdxSecure"	column="useridxsecure"/>
+		<result property="userstatus"	column="userstatus"/>
+		<result property="userrole"	column="userrole"/>
+		<result property="userJoindate"	column="userjoindate"/>
+		<result property="userFollowing"	column="userfollowing"/>
+		<result property="userFollowers"	column="userfollowers"/>
+	</resultMap>
+	
+	<select id="selectPW" parameterType="String" resultType="String"><![CDATA[
+		SELECT userPW
+		FROM userPrimaryInfo
+		WHERE userid = #{userid};
+	]]></select>
+	
+	<select id="selectUserinfo" parameterType="String" resultMap="UserVO"><![CDATA[
+		SELECT P.useridxfirst, P.userid, P.useridxsecond, userstatus, userrole, userjoindate, userfollowing, userfollowers
+		FROM userPrimaryInfo P
+		WHERE useridxfirst = #{userIdxFirst};
+	]]></select>
+	
+	<insert id="insertUser" parameterType="userMap"><![CDATA[
+		INSERT INTO userPrimaryInfo (useridxfirst, userid, useridxsecond, userpw, useridxsecure, userstatus, userrole, userjoindate, userfollowing, userfollowers)
+		VALUES #{userIdxFirst}, #{userID}, #{userIdxSecond}, #{userPW}, #{userIdxSecure}, #{userstatus}, #{userrole}, #{userJoindate}, #{userFollowing}, #{userFollowers}
+	]]></insert>
+	
+	<update id="updateUser" parameterType="userMap"><![CDATA[
+		UPDATE userPrimaryInfo
+		SET userid=#{userID}, useridxsecond=#{userIdxSecond}
+	]]></update>
+	
+	<delete id="deleteUser" parameterType="biginteger"><![CDATA[
+		DELETE FROM userPrimaryInfo
+		WHERE useridxfirst = #{userIdxFirst}
+	]]></delete>
+	
+</mapper>
